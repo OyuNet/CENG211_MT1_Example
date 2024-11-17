@@ -6,6 +6,8 @@ class Fleet {
     private ArrayList<Truck> trucks;
     private Integer priceX;
     private Integer priceY;
+    private final Integer MASS_MULTIPLIER = 1000;
+    private final Integer ROAD_MULTIPLIER = 100;
 
     public Fleet(Integer priceX, Integer priceY) {
         this.priceX = priceX;
@@ -23,8 +25,8 @@ class Fleet {
                     new Truck(
                         i,
                         color,
-                        random.nextInt(10) * 1000,
-                        random.nextInt(10) * 100
+                        random.nextInt(10) * MASS_MULTIPLIER,
+                        random.nextInt(10) * ROAD_MULTIPLIER
                     )
                 );
         }
@@ -35,8 +37,8 @@ class Fleet {
 
         for (Truck truck : trucks) {
             Integer truckPrice =
-                (truck.getMass() / 1000) * priceX +
-                (truck.getRoad() / 100) * priceY;
+                (truck.getMass() / MASS_MULTIPLIER) * priceX +
+                (truck.getRoad() / ROAD_MULTIPLIER) * priceY;
 
             System.out.println(
                 "Revenue for id: " +
@@ -55,15 +57,11 @@ class Fleet {
     }
 
     private String getColorFromNumber(Integer number) {
-        switch (number) {
-            case 0:
-                return "Yellow";
-            case 1:
-                return "Green";
-            case 2:
-                return "Blue";
-        }
-
-        return "Undefined";
+        return switch (number) {
+            case 0 -> "Yellow";
+            case 1 -> "Green";
+            case 2 -> "Blue";
+            default -> "Undefined";
+        };
     }
 }
