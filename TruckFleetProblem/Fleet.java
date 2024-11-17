@@ -39,7 +39,13 @@ class Fleet {
                 (truck.getRoad() / 100) * priceY;
 
             System.out.println(
-                "Revenue for " + truck.getTruckId() + " is " + truckPrice
+                "Revenue for id: " +
+                truck.getTruckId() +
+                " is " +
+                truckPrice +
+                ". And it's color is " +
+                truck.getTruckColor() +
+                "."
             );
 
             price += truckPrice;
